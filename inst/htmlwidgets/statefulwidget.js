@@ -8,7 +8,8 @@ HTMLWidgets.widget({
 
       renderValue: function(x, state) {
         el.innerText = x.message;      // A very simple widget.
-        el.style.fontWeight = state;   // Restore state.
+        if (state)
+          el.style.fontWeight = state;   // Restore state.
 
         // Click switches the text between bold and normal.
         var _this = this;

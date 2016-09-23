@@ -21,7 +21,8 @@ HTMLWidgets.widget({
 
       _textClick: function() {
         el.style.fontWeight = el.style.fontWeight === "bold" ? "normal" : "bold";
-        stateChanged(el.style.fontWeight);   // Notify widget owner that he should call getState() to save the latest state.
+        if (stateChanged)  // Careful - old versions of htmlwidgets will not pass this.
+          stateChanged(el.style.fontWeight);   // Will save our new state.
       },
 
       resize: function(width, height) {

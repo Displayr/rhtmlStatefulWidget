@@ -1,9 +1,9 @@
 Package: statefulwidget
-Title: What the Package Does (one line, title case)
+Title: Stores and restores state of htmlwidget
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Author: Displayr <opensource@displayr.com>
+Maintainer: Displayr <opensource@displayr.com>
+Description: A trivial htmlwidget that is able to store and restore its state
 Depends: R (>= 3.2.2)
-License: What license is it under?
-Encoding: UTF-8
+License: GPL-3
 LazyData: true

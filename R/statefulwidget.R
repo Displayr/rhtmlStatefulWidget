@@ -5,7 +5,7 @@
 #' @import htmlwidgets
 #'
 #' @export
-statefulwidget <- function(message, width = NULL, height = NULL, elementId = NULL) {
+statefulwidget <- function(message, width = NULL, height = NULL, elementId = NULL, can_run_in_root_dom = FALSE) {
 
   # forward options using x
   x = list(
@@ -13,7 +13,7 @@ statefulwidget <- function(message, width = NULL, height = NULL, elementId = NUL
   )
 
   # create widget
-  htmlwidgets::createWidget(
+  w <- htmlwidgets::createWidget(
     name = 'statefulwidget',
     x,
     width = width,
@@ -21,6 +21,11 @@ statefulwidget <- function(message, width = NULL, height = NULL, elementId = NUL
     package = 'statefulwidget',
     elementId = elementId
   )
+
+  if (can_run_in_root_dom)  # default is FALSE for backwards compatibility of existing Chrome tests
+    class(w) <- append(class(w), "can_run_in_root_dom")
+    
+  w
 }
 
 #' Shiny bindings for statefulwidget

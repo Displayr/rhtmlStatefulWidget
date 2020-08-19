@@ -23,8 +23,8 @@ statefulwidget <- function(message, width = NULL, height = NULL, elementId = NUL
   )
 
   if (can_run_in_root_dom)  # default is FALSE for backwards compatibility of existing Chrome tests
-    class(w) <- append(class(w), "can_run_in_root_dom")
-    
+    class(w) <- append(class(w), "can-run-in-root-dom")
+
   w
 }
 

@@ -35,7 +35,7 @@ HTMLWidgets.widget({
       },
 
       resize: function(width, height) {   
-        if (x.crash_on_resize)
+        if (this._x.crash_on_resize)
           throw new Error("Crashing on resize");
       }
     };

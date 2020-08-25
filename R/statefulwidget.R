@@ -5,11 +5,15 @@
 #' @import htmlwidgets
 #'
 #' @export
-statefulwidget <- function(message, width = NULL, height = NULL, elementId = NULL, can_run_in_root_dom = FALSE) {
+statefulwidget <- function(message, width=NULL, height=NULL, elementId=NULL, can_run_in_root_dom=FALSE, crash_on_render=FALSE, crash_on_rerender=FALSE, crash_on_resize=FALSE, crash_on_click=FALSE) {
 
   # forward options using x
   x = list(
-    message = message
+    message = message,
+    crash_on_render = crash_on_render,
+    crash_on_rerender = crash_on_rerender,
+    crash_on_resize = crash_on_resize,
+    crash_on_click = crash_on_click
   )
 
   # create widget

@@ -5,15 +5,16 @@ HTMLWidgets.widget({
   factory: function(el, width, height, stateChanged) {
     return {
       _clickHandler: null,
-      _x: null,
+      _count_until_resize_crash: null,
 
       renderValue: function(x, state) {
         if (x.crash_on_render)
           throw new Error("Crashing on render");
         if (x.crash_on_rerender && !this._x)
           throw new Error("Crashing on rerender");
+        if (x.crash_on_resize)
+          this._count_until_resize_crash = 1;  // ignore first resize, which always follows render
 
-        this._x = x;
         el.innerText = x.message;      // A very simple widget.
         if (state)
           el.style.fontWeight = state;   // Restore state.
@@ -35,7 +36,7 @@ HTMLWidgets.widget({
       },
 
       resize: function(width, height) {   
-        if (this._x.crash_on_resize)
+        if (this._count_until_resize_crash !== null && this._count_until_resize_crash-- === 0)
           throw new Error("Crashing on resize");
       }
     };

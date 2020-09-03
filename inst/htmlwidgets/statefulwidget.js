@@ -14,6 +14,8 @@ HTMLWidgets.widget({
           throw new Error("Crashing on rerender");
         if (x.crash_on_resize)
           this._count_until_resize_crash = 1;  // ignore first resize, which always follows render
+        if (x.crash_on_timeout)
+          setTimeout(function() { throw new Error("Crashing on timeout"); }, 1000);
 
         el.innerText = x.message;      // A very simple widget.
         if (state)
@@ -23,12 +25,12 @@ HTMLWidgets.widget({
         var _this = this;
         if (this._clickHandler)
           el.removeEventListener("click", this._clickHandler);
-        this._clickHandler = function() { _this._textClick(); }
+        this._clickHandler = function() { _this._textClick(x.crash_on_click); }
         el.addEventListener("click", this._clickHandler);
       },
 
-      _textClick: function() {
-        if (this._x.crash_on_click)
+      _textClick: function(crash_on_click) {
+        if (crash_on_click)
           throw new Error("Crashing on click");
         el.style.fontWeight = el.style.fontWeight === "bold" ? "normal" : "bold";
         if (stateChanged)  // Careful - old versions of htmlwidgets will not pass this.

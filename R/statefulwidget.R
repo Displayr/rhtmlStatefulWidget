@@ -5,7 +5,7 @@
 #' @import htmlwidgets
 #'
 #' @export
-statefulwidget <- function(message, width=NULL, height=NULL, elementId=NULL, can_run_in_root_dom=FALSE, crash_on_render=FALSE, crash_on_rerender=FALSE, crash_on_resize=FALSE, crash_on_click=FALSE) {
+statefulwidget <- function(message, width=NULL, height=NULL, elementId=NULL, can_run_in_root_dom=FALSE, crash_on_render=FALSE, crash_on_rerender=FALSE, crash_on_resize=FALSE, crash_on_click=FALSE, crash_on_timeout=FALSE) {
 
   # forward options using x
   x = list(

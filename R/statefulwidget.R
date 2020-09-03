@@ -13,7 +13,8 @@ statefulwidget <- function(message, width=NULL, height=NULL, elementId=NULL, can
     crash_on_render = crash_on_render,
     crash_on_rerender = crash_on_rerender,
     crash_on_resize = crash_on_resize,
-    crash_on_click = crash_on_click
+    crash_on_click = crash_on_click,
+    crash_on_timeout = crash_on_timeout
   )
 
   # create widget

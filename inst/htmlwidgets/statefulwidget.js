@@ -1,5 +1,3 @@
-const $ = require('jquery')
-
 HTMLWidgets.widget({
   name: 'statefulwidget',
   type: 'output',
@@ -27,11 +25,11 @@ HTMLWidgets.widget({
         var _this = this;
         if (this._clickHandler) {
           el.removeEventListener("click", this._clickHandler);
-          $(el).off("click");
+          jQuery(el).off("click");
         }
         this._clickHandler = function() { _this._textClick(x.crash_on_naive_click || x.crash_on_jquery_click); }
         el.addEventListener("click", this._clickHandler);
-        $(el).on("click", this._clickHandler);
+        jQuery(el).on("click", this._clickHandler);
       },
 
       _textClick: function(crash_on_click) {

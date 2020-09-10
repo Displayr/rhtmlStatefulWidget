@@ -6,7 +6,7 @@
 #'
 #' @export
 statefulwidget <- function(message, width=NULL, height=NULL, elementId=NULL, can_run_in_root_dom=FALSE, crash_on_render=FALSE, 
-                           crash_on_rerender=FALSE, crash_on_resize=FALSE, crash_on_naive_click=FALSE, crash_on_jquery_click=FALSE, crash_on_timeout=FALSE) {
+                           crash_on_rerender=FALSE, crash_on_resize=FALSE, crash_on_naive_click=FALSE, crash_on_jquery_hover=FALSE, crash_on_timeout=FALSE) {
 
   # forward options using x
   x = list(
@@ -15,7 +15,7 @@ statefulwidget <- function(message, width=NULL, height=NULL, elementId=NULL, can
     crash_on_rerender = crash_on_rerender,
     crash_on_resize = crash_on_resize,
     crash_on_naive_click = crash_on_naive_click,
-    crash_on_jquery_click = crash_on_jquery_click,
+    crash_on_jquery_hover = crash_on_jquery_hover,
     crash_on_timeout = crash_on_timeout
   )
 

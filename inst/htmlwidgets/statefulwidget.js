@@ -15,8 +15,6 @@ HTMLWidgets.widget({
           throw new Error("Crashing on rerender");
         if (x.crash_on_resize)
           this._count_until_resize_crash = 1;  // ignore first resize, which always follows render
-        if (x.crash_on_timeout)
-          setTimeout(function() { throw new Error("Crashing on timeout"); }, 1000);
 
         el.innerText = x.message;      // A very simple widget.
         if (state)
@@ -26,7 +24,7 @@ HTMLWidgets.widget({
         var _this = this;
         if (this._clickHandler)
           el.removeEventListener("click", this._clickHandler);
-        this._clickHandler = function() { _this._textClick(x.crash_on_naive_click); }
+        this._clickHandler = function() { _this._textClick(x.crash_on_naive_click, x.crash_on_timeout); }
         el.addEventListener("click", this._clickHandler);
 
         // every time mouse enter will switch the text color between red and black
@@ -36,9 +34,14 @@ HTMLWidgets.widget({
         jQuery(el).on("mouseenter mouseleave", this._hoverHandler);
       },
 
-      _textClick: function(crash_on_click) {
+      _textClick: function(crash_on_click, crash_on_timeout) {
         if (crash_on_click)
           throw new Error("Crashing on click (DOM event handler)");
+
+        // use click to trigger timeout, so it could be caught by chrome test
+        if (crash_on_timeout)
+          setTimeout(function() { throw new Error("Crashing on timeout"); }, 0);
+          
         el.style.fontWeight = el.style.fontWeight === "bold" ? "normal" : "bold";
         if (stateChanged)  // Careful - old versions of htmlwidgets will not pass this.
           stateChanged(el.style.fontWeight);   // Will save our new state.

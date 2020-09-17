@@ -6,15 +6,14 @@ HTMLWidgets.widget({
     return {
       _clickHandler: null,
       _hoverHandler: null,
-      _count_until_resize_crash: null,
+      _crashOnResize: null,
 
       renderValue: function(x, state) {
         if (x.crash_on_render)
           throw new Error("Crashing on render");
         if (x.crash_on_rerender && !this._x)
           throw new Error("Crashing on rerender");
-        if (x.crash_on_resize)
-          this._count_until_resize_crash = 1;  // ignore first resize, which always follows render
+        this._crashOnResize = x.crash_on_resize;
 
         el.innerText = x.message;      // A very simple widget.
         if (state)
@@ -56,7 +55,7 @@ HTMLWidgets.widget({
       },
 
       resize: function(width, height) {   
-        if (this._count_until_resize_crash !== null && this._count_until_resize_crash-- === 0)
+        if (this._crashOnResize)
           throw new Error("Crashing on resize");
       }
     };

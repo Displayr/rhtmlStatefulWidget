@@ -26,11 +26,12 @@ HTMLWidgets.widget({
         this._clickHandler = function() { _this._textClick(x.crash_on_naive_click, x.crash_on_timeout); }
         el.addEventListener("click", this._clickHandler);
 
-        // every time mouse enter will switch the text color between red and black
-        if (this._hoverHandler)
-          jQuery(el).off( "mouseenter mouseleave" );
-        this._hoverHandler = function() { _this._textHover(x.crash_on_jquery_hover); }
-        jQuery(el).on("mouseenter mouseleave", this._hoverHandler);
+        if (x.crash_on_jquery_hover) {
+          if (this._hoverHandler)
+            jQuery(el).off( "mouseenter mouseleave" );
+          this._hoverHandler = function() { _this._textHover(); }
+          jQuery(el).on("mouseenter mouseleave", this._hoverHandler);
+        }
       },
 
       _textClick: function(crash_on_click, crash_on_timeout) {
@@ -46,12 +47,10 @@ HTMLWidgets.widget({
           stateChanged(el.style.fontWeight);   // Will save our new state.
       },
 
-      _textHover: function(crash_on_jquery_hover) {
-        if (crash_on_jquery_hover)
-          throw new Error("Crashing on hover(jquery event handler)");
-        el.style.color = el.style.color === "red" ? "black" : "red";
-        if (stateChanged)
-          stateChanged(el.style.color);
+      _textHover: function() {
+        // Jquery will only be used when crash_on_jquery_hover is true. so 
+        // this event will be attached only when we want a crash on hover.
+        throw new Error("Crashing on hover(jquery event handler)");
       },
 
       resize: function(width, height) {   

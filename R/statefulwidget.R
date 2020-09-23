@@ -34,7 +34,7 @@ statefulwidget <- function(message, width=NULL, height=NULL, elementId=NULL, can
     height = height,
     package = 'statefulwidget',
     elementId = elementId,
-    sizingPolicy = sizingPolicy(padding = 0, browser.fill = TRUE)
+    sizingPolicy = htmlwidgets::sizingPolicy(padding = 0, browser.fill = TRUE)
   )
 
   # default is FALSE for backwards compatibility of existing Chrome tests

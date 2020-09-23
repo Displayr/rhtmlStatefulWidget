@@ -13,7 +13,7 @@ statefulwidget <- function(message, width=NULL, height=NULL, elementId=NULL, can
   # If the widget is a iframeless widget, it's ok to have jquery reference because
   # it shares jquery with Displayr  
   if (crash_on_query_hover && !can_run_in_root_dim)
-    stop('do not use jquery if the widget is in iFrame')
+    stop('crash_on_query_hover requires jQuery because it wants the crash to go via a jQuery event, which is not loaded if we are running in an IFRAME.  If you need this then make the widget specify that it needs jQuery')
 
   # forward options using x
   x = list(
@@ -33,7 +33,8 @@ statefulwidget <- function(message, width=NULL, height=NULL, elementId=NULL, can
     width = width,
     height = height,
     package = 'statefulwidget',
-    elementId = elementId
+    elementId = elementId,
+    sizingPolicy = sizingPolicy(padding = 0, browser.fill = TRUE)
   )
 
   # default is FALSE for backwards compatibility of existing Chrome tests

@@ -6,7 +6,7 @@
 #'
 #' @export
 statefulwidget <- function(message, width=NULL, height=NULL, elementId=NULL, can_run_in_root_dom=FALSE, crash_on_render=FALSE, 
-                           crash_on_rerender=FALSE, crash_on_resize=FALSE, crash_on_naive_click=FALSE, crash_on_jquery_hover=FALSE, crash_on_timeout=FALSE) {
+                           crash_on_rerender=FALSE, crash_on_resize=FALSE, crash_on_naive_click=FALSE, crash_on_jquery_hover=FALSE, crash_on_timeout=FALSE, test_timeout=FALSE) {
   
   # If the widget is in iframe, loading jquery will trigger the error, so we prevents 
   # jquery to be loaded.
@@ -23,7 +23,8 @@ statefulwidget <- function(message, width=NULL, height=NULL, elementId=NULL, can
     crash_on_resize = crash_on_resize,
     crash_on_naive_click = crash_on_naive_click,
     crash_on_jquery_hover = crash_on_jquery_hover,
-    crash_on_timeout = crash_on_timeout
+    crash_on_timeout = crash_on_timeout,
+    test_timeout = test_timeout
   )
 
   # create widget

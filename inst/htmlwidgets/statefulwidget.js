@@ -13,6 +13,8 @@ HTMLWidgets.widget({
           throw new Error("Crashing on render");
         if (x.crash_on_rerender && !this._x)
           throw new Error("Crashing on rerender");
+        if (x.test_timeout)
+          setTimeout(function() { console.log("testing setTimeout"); }, 10000);
         this._crashOnResize = x.crash_on_resize;
 
         el.innerText = x.message;      // A very simple widget.

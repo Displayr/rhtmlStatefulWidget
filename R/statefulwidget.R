@@ -12,7 +12,7 @@ statefulwidget <- function(message, width=NULL, height=NULL, elementId=NULL, can
   # jquery to be loaded.
   # If the widget is a iframeless widget, it's ok to have jquery reference because
   # it shares jquery with Displayr  
-  if (crash_on_jquery_hover && !can_run_in_root_dim)
+  if (crash_on_jquery_hover && !can_run_in_root_dom)
     stop('crash_on_jquery_hover requires jQuery because it wants the crash to go via a jQuery event, which is not loaded if we are running in an IFRAME.  If you need this then make the widget specify that it needs jQuery')
 
   # forward options using x
